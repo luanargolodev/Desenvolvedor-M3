@@ -1,5 +1,3 @@
-import { Product } from "./Product";
-import { formatNumberToMoney } from "./formatNumberToMoney";
 import { createProducts } from "./createProducts";
 
 const serverUrl = "http://localhost:5000";
@@ -68,6 +66,13 @@ const Shelf = {
 
       currentPage++;
       $buttonShowMoreProducts.dataset.page = String(currentPage);
+
+      if (data.length === 0) {
+        $buttonShowMoreProducts.textContent =
+          "Não há mais produtos para serem exibidos";
+        $buttonShowMoreProducts.disabled = true;
+        $buttonShowMoreProducts.classList.add("empty");
+      }
 
       Shelf.setupBuyProduct();
     });
