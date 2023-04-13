@@ -95,6 +95,8 @@ body {
 
     &.show {
       display: block;
+      overflow: auto;
+      height: 100%;
     }
 
     &.filter {
@@ -118,6 +120,111 @@ body {
           width: 18px;
           height: 13px;
           right: 0;
+        }
+      }
+
+      .shelf__filter-content__options {
+        display: none;
+
+        &.show {
+          display: block;
+        }
+
+        &.colors,
+        &.prices {
+          .shelf__filter-content__options__input {
+            margin-bottom: 18px;
+
+            input[type="checkbox"] {
+              display: inline-block;
+              vertical-align: middle;
+
+              clip: rect(0 0 0 0);
+              height: 1px;
+              margin: -1px;
+              overflow: hidden;
+              padding: 0;
+              position: absolute;
+              width: 1px;
+            }
+
+            label {
+              font-size: 14px;
+              line-height: 100%;
+              color: $black;
+              position: relative;
+              padding-left: 2.2em;
+
+              &::before,
+              &:after {
+                content: "";
+                display: inline-block;
+                vertical-align: middle;
+                height: 16px;
+                width: 16px;
+                background: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.5);
+                transition: all 0.2s ease;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translate(0, -50%);
+              }
+            }
+
+            input[type="checkbox"]:checked + label::after {
+              width: 10px;
+              height: 10px;
+              left: 3px;
+              background-color: $primary;
+            }
+
+            input[type="checkbox"]:checked + label::after {
+              opacity: 1;
+            }
+          }
+        }
+
+        &.sizes {
+          display: none;
+
+          &.show {
+            display: flex;
+          }
+
+          max-width: 153px;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .shelf__filter-content__options__input {
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+
+            &[data-selected="true"] {
+              border: 1px solid $primary;
+
+              label {
+                color: $black;
+              }
+            }
+
+            input[type="checkbox"] {
+              display: none;
+            }
+
+            label {
+              font-size: 16px;
+              line-height: 22px;
+              letter-spacing: 0.05em;
+              text-transform: uppercase;
+              color: rgba(0, 0, 0, 0.5);
+            }
+          }
         }
       }
     }

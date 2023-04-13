@@ -1,4 +1,5 @@
 import { createProducts } from "./createProducts";
+import { Filter } from "./filters";
 
 const serverUrl = "http://localhost:5000";
 const limit = 4;
@@ -8,6 +9,8 @@ const Shelf = {
     document.addEventListener("DOMContentLoaded", () => {
       Shelf.getProducts();
       Shelf.showMoreProducts();
+
+      Filter.setup();
     });
 
     Shelf.openMenu("filter", "filter");
