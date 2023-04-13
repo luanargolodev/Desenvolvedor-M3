@@ -10,7 +10,8 @@ const Shelf = {
       Shelf.showMoreProducts();
     });
 
-    Shelf.openFilter();
+    Shelf.openMenu("filter", "filter");
+    Shelf.openMenu("order", "order");
   },
 
   getProducts: async () => {
@@ -80,16 +81,19 @@ const Shelf = {
     });
   },
 
-  openFilter: () => {
-    const $buttonFilter = document.querySelector(".shelf__top__button.filter");
-    $buttonFilter?.addEventListener("click", () => {
-      const $filter = document.querySelector(".shelf__filter.filter");
-      $filter.classList.toggle("show");
+  openMenu: (buttonClass: string, filterClass: string) => {
+    const $menuButton = document.querySelector(
+      `.shelf__top__button.${buttonClass}`
+    );
+    const $filter = document.querySelector(`.shelf__filter.${filterClass}`);
+    const $closeButton = $filter.querySelector(".shelf__filter-top__close");
 
-      const $closeFilter = document.querySelector(".shelf__filter-top__close");
-      $closeFilter?.addEventListener("click", () => {
-        $filter.classList.remove("show");
-      });
+    $menuButton.addEventListener("click", () => {
+      $filter.classList.add("show");
+    });
+
+    $closeButton.addEventListener("click", () => {
+      $filter.classList.remove("show");
     });
   },
 };
