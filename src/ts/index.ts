@@ -4,17 +4,18 @@ import { Filter } from "./filters";
 export const serverUrl = "http://localhost:5000";
 export const limit = 4;
 
-const Shelf = {
+const Default = {
   init: function () {
     document.addEventListener("DOMContentLoaded", () => {
-      Shelf.getProducts();
-      Shelf.showMoreProducts();
+      Default.getProducts();
+      Default.showMoreProducts();
+      Default.goToTop();
 
       Filter.setup();
     });
 
-    Shelf.openMenu("filter", "filter");
-    Shelf.openMenu("order", "order");
+    Default.openMenu("filter", "filter");
+    Default.openMenu("order", "order");
   },
 
   getProducts: async () => {
@@ -32,7 +33,7 @@ const Shelf = {
     const $shelf = document.querySelector(".shelf__products")!;
     $shelf.innerHTML = productsHtml;
 
-    Shelf.setupBuyProduct();
+    Default.setupBuyProduct();
   },
 
   setupBuyProduct: () => {
@@ -123,7 +124,7 @@ const Shelf = {
         $buttonShowMoreProducts.classList.add("empty");
       }
 
-      Shelf.setupBuyProduct();
+      Default.setupBuyProduct();
     });
   },
 
@@ -142,6 +143,27 @@ const Shelf = {
       $filter.classList.remove("show");
     });
   },
+
+  goToTop: () => {
+    const $goToTop = document.querySelector(".go-top");
+
+    window.addEventListener("scroll", () => {
+      const scroll = window.scrollY;
+
+      $goToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      if (scroll > 200) {
+        $goToTop.classList.add("show");
+      } else {
+        $goToTop.classList.remove("show");
+      }
+    });
+  },
 };
 
-Shelf.init();
+Default.init();
