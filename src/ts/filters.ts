@@ -1,6 +1,6 @@
 import { serverUrl, limit } from "./index";
 import { createProducts } from "./createProducts";
-import { getValueMinAndMax } from "./utils/getValueMinAndMax";
+import { separateNumbers } from "./utils/separateNumbers";
 import { hideMenu } from "./utils/hideMenu";
 
 const filters = {
@@ -129,6 +129,8 @@ export const Filter = {
         $input.checked = false;
       });
 
+      if (selectedFilters.length === 0) return;
+
       Filter.search(selectedFilters);
       selectedFilters = [];
     });
@@ -148,7 +150,9 @@ export const Filter = {
       filters.prices.includes(filter)
     );
 
-    const pricesMinAndMax = prices.map((price) => getValueMinAndMax(price));
+    const pricesFiltered = separateNumbers(prices);
+
+    console.log("pricesFiltered", pricesFiltered);
 
     let baseUrlRequest = `${serverUrl}/products?_limit=${limit}&_page=1`;
     if (colors.length > 0) {
@@ -159,8 +163,14 @@ export const Filter = {
       baseUrlRequest += `&size_like=${sizes}`;
     }
 
-    if (pricesMinAndMax.length > 0) {
-      baseUrlRequest += `&price_gte=${pricesMinAndMax[0].min}&price_lte=${pricesMinAndMax[0].max}`;
+    if (pricesFiltered.length > 0) {
+      for (let i = 0; i < pricesFiltered.length; i += 2) {
+        const priceMin = pricesFiltered[i];
+        const priceMax = pricesFiltered[i + 1];
+        baseUrlRequest += `&price_gte=${priceMin}&price_lte=${priceMax}&`;
+      }
+
+      baseUrlRequest = baseUrlRequest.slice(0, -1);
     }
 
     const response = await fetch(baseUrlRequest);

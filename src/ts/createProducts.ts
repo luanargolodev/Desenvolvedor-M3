@@ -18,7 +18,9 @@ export function createProducts(products: Product[]): string {
         <span class="shelf__product-installments">até ${
           product.parcelamento[0]
         }x de R$ ${product.parcelamento[1]}</span>
-        <button class="shelf__product-buybutton">Comprar</button>
+        <button class="shelf__product-buybutton" data-id="${
+          product.id
+        }">Comprar</button>
       </div>`;
     })
     .join("");

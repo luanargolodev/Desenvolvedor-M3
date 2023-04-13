@@ -16,6 +16,7 @@ const Default = {
 
     Default.openMenu("filter", "filter");
     Default.openMenu("order", "order");
+    Default.updateCart();
   },
 
   getProducts: async () => {
@@ -33,10 +34,10 @@ const Default = {
     const $shelf = document.querySelector(".shelf__products")!;
     $shelf.innerHTML = productsHtml;
 
-    Default.setupBuyProduct();
+    Default.buyProduct();
   },
 
-  setupBuyProduct: () => {
+  buyProduct: () => {
     const $buttonBuy = document.querySelectorAll(".shelf__product-buybutton");
     const $numberProductsInCart = document.querySelector(
       ".header__content__cart-text"
@@ -44,10 +45,29 @@ const Default = {
 
     $buttonBuy.forEach((button) => {
       button.addEventListener("click", () => {
-        alert("Produto comprado com sucesso!");
+        alert("Produto adicionado ao carrinho!");
 
         const numberProducts = Number($numberProductsInCart.textContent);
         $numberProductsInCart.textContent = String(numberProducts + 1);
+
+        const id = button.getAttribute("data-id");
+        const quantity = 1;
+
+        const products = localStorage.getItem("products");
+        if (products) {
+          const productsArray = JSON.parse(products);
+          const product = productsArray.find(
+            (product: any) => product.id === id
+          );
+          if (product) {
+            product.quantity += quantity;
+          } else {
+            productsArray.push({ id, quantity });
+          }
+          localStorage.setItem("products", JSON.stringify(productsArray));
+        } else {
+          localStorage.setItem("products", JSON.stringify([{ id, quantity }]));
+        }
       });
     });
   },
@@ -124,7 +144,7 @@ const Default = {
         $buttonShowMoreProducts.classList.add("empty");
       }
 
-      Default.setupBuyProduct();
+      Default.buyProduct();
     });
   },
 
@@ -163,6 +183,22 @@ const Default = {
         $goToTop.classList.remove("show");
       }
     });
+  },
+
+  updateCart: () => {
+    const $numberProductsInCart = document.querySelector(
+      ".header__content__cart-text"
+    )!;
+
+    const products = localStorage.getItem("products");
+    if (products) {
+      const productsArray = JSON.parse(products);
+      const numberProducts = productsArray.reduce(
+        (acc: number, product: any) => acc + product.quantity,
+        0
+      );
+      $numberProductsInCart.textContent = String(numberProducts);
+    }
   },
 };
 
