@@ -171,8 +171,14 @@ export const Filter = {
       const $shelf = document.querySelector(".shelf__products")!;
       $shelf.innerHTML = productsHtml;
 
-      const $buttonShowMore = document.querySelector(".shelf__show-more");
+      const $buttonShowMore =
+        document.querySelector<HTMLButtonElement>(".shelf__show-more");
       $buttonShowMore.setAttribute("data-search", "recent");
+      $buttonShowMore.setAttribute("data-page", "1");
+      $buttonShowMore.textContent = "Carregar mais";
+      $buttonShowMore.disabled = false;
+      $buttonShowMore.classList.remove("empty");
+
       hideMenu();
     });
 
@@ -189,8 +195,13 @@ export const Filter = {
       const $shelf = document.querySelector(".shelf__products")!;
       $shelf.innerHTML = productsHtml;
 
-      const $buttonShowMore = document.querySelector(".shelf__show-more");
+      const $buttonShowMore =
+        document.querySelector<HTMLButtonElement>(".shelf__show-more");
       $buttonShowMore.setAttribute("data-search", "lowest-price");
+      $buttonShowMore.setAttribute("data-page", "1");
+      $buttonShowMore.textContent = "Carregar mais";
+      $buttonShowMore.disabled = false;
+      $buttonShowMore.classList.remove("empty");
 
       hideMenu();
     });
@@ -208,8 +219,13 @@ export const Filter = {
       const $shelf = document.querySelector(".shelf__products")!;
       $shelf.innerHTML = productsHtml;
 
-      const $buttonShowMore = document.querySelector(".shelf__show-more");
+      const $buttonShowMore =
+        document.querySelector<HTMLButtonElement>(".shelf__show-more");
       $buttonShowMore.setAttribute("data-search", "highest-price");
+      $buttonShowMore.setAttribute("data-page", "1");
+      $buttonShowMore.textContent = "Carregar mais";
+      $buttonShowMore.disabled = false;
+      $buttonShowMore.classList.remove("empty");
 
       hideMenu();
     });

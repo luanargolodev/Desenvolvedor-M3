@@ -54,10 +54,11 @@ const Shelf = {
   showMoreProducts: () => {
     const $buttonShowMoreProducts =
       document.querySelector<HTMLButtonElement>(".shelf__show-more")!;
-    let currentPage = 1;
 
     $buttonShowMoreProducts.addEventListener("click", async () => {
       const search = $buttonShowMoreProducts.getAttribute("data-search");
+      let currentPage = Number($buttonShowMoreProducts.dataset.page);
+
       let response: Response;
 
       interface SearchOption {
@@ -98,6 +99,8 @@ const Shelf = {
             currentPage + 1
           }`
         );
+
+        console.log(response);
       }
 
       const data = await response.json();
