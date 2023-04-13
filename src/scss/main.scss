@@ -47,6 +47,7 @@ body {
         line-height: 12px;
         bottom: 0;
         right: 0;
+        padding: 2px;
       }
     }
   }
@@ -95,13 +96,14 @@ body {
     margin-top: 35px;
     width: 100%;
     flex-wrap: wrap;
+    justify-content: center;
 
     .shelf__product {
       display: flex;
       flex-direction: column;
       text-align: center;
       font-family: "Open Sans", sans-serif;
-      max-width: 162px;
+      max-width: 46%;
       cursor: pointer;
 
       &-name {
@@ -153,5 +155,21 @@ body {
     line-height: 19px;
     text-transform: uppercase;
     cursor: pointer;
+  }
+}
+
+.footer {
+  background-color: #000000;
+  padding: 7px;
+  margin-top: 51px;
+
+  &__title {
+    color: #fff;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 }
