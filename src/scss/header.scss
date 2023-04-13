@@ -1,0 +1,40 @@
+@import "colors";
+
+.header {
+  margin-top: 16px;
+  border-bottom: 2px solid #c7c7c7;
+  padding-bottom: 18px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__logo {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__cart {
+      border: none;
+      background-color: transparent;
+      position: relative;
+      cursor: pointer;
+
+      &-text {
+        position: absolute;
+        background-color: $primary;
+        width: 12px;
+        height: 12px;
+        border-radius: 16px;
+        color: $white;
+        font-size: 10px;
+        font-family: "Roboto", sans-serif;
+        line-height: 12px;
+        bottom: 0;
+        right: 0;
+        padding: 2px;
+      }
+    }
+  }
+}

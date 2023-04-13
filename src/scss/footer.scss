@@ -1,0 +1,15 @@
+.footer {
+  background-color: #000000;
+  padding: 7px;
+  margin-top: 51px;
+
+  &__title {
+    color: #fff;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
