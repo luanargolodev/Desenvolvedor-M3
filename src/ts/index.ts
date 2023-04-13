@@ -82,6 +82,10 @@ const Shelf = {
           sort: "price",
           order: "asc",
         },
+        id: {
+          sort: "id",
+          order: "asc",
+        },
       };
 
       const searchOption: SearchOption | undefined = searchOptions[search];
