@@ -158,76 +158,46 @@ export const Filter = {
   },
 
   orderBy: () => {
-    const $orderByRecent = document.querySelector(
-      ".shelf__filter-content__option.recent"
-    );
-    $orderByRecent.addEventListener("click", async () => {
-      const response = await fetch(
-        `${serverUrl}/products?_sort=date&_order=desc&_limit=${limit}&_page=1`
-      );
-      const data = await response.json();
+    const orders = [
+      {
+        classSelector: ".shelf__filter-content__option.recent",
+        searchParams: { sort: "date", order: "desc" },
+        buttonSearch: "recent",
+      },
+      {
+        classSelector: ".shelf__filter-content__option.lowest-price",
+        searchParams: { sort: "price", order: "desc" },
+        buttonSearch: "lowest-price",
+      },
+      {
+        classSelector: ".shelf__filter-content__option.highest-price",
+        searchParams: { sort: "price", order: "asc" },
+        buttonSearch: "highest-price",
+      },
+    ];
 
-      const productsHtml = createProducts(data);
-      const $shelf = document.querySelector(".shelf__products")!;
-      $shelf.innerHTML = productsHtml;
+    orders.forEach((order) => {
+      const orderByOption = document.querySelector(order.classSelector);
+      orderByOption.addEventListener("click", async () => {
+        const response = await fetch(
+          `${serverUrl}/products?_sort=${order.searchParams.sort}&_order=${order.searchParams.order}&_limit=${limit}&_page=1`
+        );
+        const data = await response.json();
 
-      const $buttonShowMore =
-        document.querySelector<HTMLButtonElement>(".shelf__show-more");
-      $buttonShowMore.setAttribute("data-search", "recent");
-      $buttonShowMore.setAttribute("data-page", "1");
-      $buttonShowMore.textContent = "Carregar mais";
-      $buttonShowMore.disabled = false;
-      $buttonShowMore.classList.remove("empty");
+        const productsHtml = createProducts(data);
+        const $shelf = document.querySelector(".shelf__products")!;
+        $shelf.innerHTML = productsHtml;
 
-      hideMenu();
-    });
+        const $buttonShowMore =
+          document.querySelector<HTMLButtonElement>(".shelf__show-more");
+        $buttonShowMore.setAttribute("data-search", order.buttonSearch);
+        $buttonShowMore.setAttribute("data-page", "1");
+        $buttonShowMore.textContent = "Carregar mais";
+        $buttonShowMore.disabled = false;
+        $buttonShowMore.classList.remove("empty");
 
-    const $orderByLowestPrice = document.querySelector(
-      ".shelf__filter-content__option.lowest-price"
-    );
-    $orderByLowestPrice.addEventListener("click", async () => {
-      const response = await fetch(
-        `${serverUrl}/products?_sort=price&_order=desc&_limit=${limit}&_page=1`
-      );
-      const data = await response.json();
-
-      const productsHtml = createProducts(data);
-      const $shelf = document.querySelector(".shelf__products")!;
-      $shelf.innerHTML = productsHtml;
-
-      const $buttonShowMore =
-        document.querySelector<HTMLButtonElement>(".shelf__show-more");
-      $buttonShowMore.setAttribute("data-search", "lowest-price");
-      $buttonShowMore.setAttribute("data-page", "1");
-      $buttonShowMore.textContent = "Carregar mais";
-      $buttonShowMore.disabled = false;
-      $buttonShowMore.classList.remove("empty");
-
-      hideMenu();
-    });
-
-    const $orderByHighestPrice = document.querySelector(
-      ".shelf__filter-content__option.highest-price"
-    );
-    $orderByHighestPrice.addEventListener("click", async () => {
-      const response = await fetch(
-        `${serverUrl}/products?_sort=price&_order=asc&_limit=${limit}&_page=1`
-      );
-      const data = await response.json();
-
-      const productsHtml = createProducts(data);
-      const $shelf = document.querySelector(".shelf__products")!;
-      $shelf.innerHTML = productsHtml;
-
-      const $buttonShowMore =
-        document.querySelector<HTMLButtonElement>(".shelf__show-more");
-      $buttonShowMore.setAttribute("data-search", "highest-price");
-      $buttonShowMore.setAttribute("data-page", "1");
-      $buttonShowMore.textContent = "Carregar mais";
-      $buttonShowMore.disabled = false;
-      $buttonShowMore.classList.remove("empty");
-
-      hideMenu();
+        hideMenu();
+      });
     });
   },
 };
