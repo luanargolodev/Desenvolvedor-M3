@@ -304,6 +304,20 @@ body {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    font-family: "Open Sans", sans-serif;
+
+    &-not-found {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      font-size: 28px;
+      line-height: 38px;
+      text-transform: uppercase;
+      color: $gray2;
+      text-align: center;
+    }
 
     .shelf__product {
       display: flex;

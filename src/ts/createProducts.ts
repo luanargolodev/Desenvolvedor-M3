@@ -1,5 +1,5 @@
-import { Product } from "./Product";
-import { formatNumberToMoney } from "./formatNumberToMoney";
+import { Product } from "./types/Product";
+import { formatNumberToMoney } from "./utils/formatNumberToMoney";
 
 export function createProducts(products: Product[]): string {
   return products

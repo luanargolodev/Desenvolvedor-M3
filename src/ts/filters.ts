@@ -1,5 +1,7 @@
 import { serverUrl, limit } from "./index";
 import { createProducts } from "./createProducts";
+import { getValueMinAndMax } from "./utils/getValueMinAndMax";
+import { hideMenu } from "./utils/hideMenu";
 
 const filters = {
   colors: [
@@ -23,11 +25,6 @@ const filters = {
     "R$ 501,00",
   ],
 };
-
-function hideMenu() {
-  const $menu = document.querySelector(".shelf__filter.order");
-  $menu.classList.remove("show");
-}
 
 export const Filter = {
   init: function () {},
@@ -137,8 +134,58 @@ export const Filter = {
     });
   },
 
-  search: (selectedFilters: string[]) => {
-    console.log(selectedFilters);
+  search: async (selectedFilters: string[]) => {
+    // separate filters to colors, price and size
+    const colors = selectedFilters.filter((filter) =>
+      filters.colors.includes(filter)
+    );
+
+    const sizes = selectedFilters.filter((filter) =>
+      filters.sizes.includes(filter)
+    );
+
+    const prices = selectedFilters.filter((filter) =>
+      filters.prices.includes(filter)
+    );
+
+    const pricesMinAndMax = prices.map((price) => getValueMinAndMax(price));
+
+    let baseUrlRequest = `${serverUrl}/products?_limit=${limit}&_page=1`;
+    if (colors.length > 0) {
+      baseUrlRequest += `&color_like=${colors}`;
+    }
+
+    if (sizes.length > 0) {
+      baseUrlRequest += `&size_like=${sizes}`;
+    }
+
+    if (pricesMinAndMax.length > 0) {
+      baseUrlRequest += `&price_gte=${pricesMinAndMax[0].min}&price_lte=${pricesMinAndMax[0].max}`;
+    }
+
+    const response = await fetch(baseUrlRequest);
+    const data: [] = await response.json();
+
+    const productsHtml = createProducts(data);
+    const $shelf = document.querySelector(".shelf__products")!;
+    $shelf.innerHTML = productsHtml;
+
+    const $buttonShowMore =
+      document.querySelector<HTMLButtonElement>(".shelf__show-more");
+    $buttonShowMore.setAttribute("data-search", "search");
+    $buttonShowMore.setAttribute("data-page", "1");
+    $buttonShowMore.textContent = "Carregar mais";
+    $buttonShowMore.disabled = false;
+    $buttonShowMore.classList.remove("empty");
+
+    if (data.length === 0) {
+      const _productsNotFound = document.createElement("h3");
+      _productsNotFound.classList.add("shelf__products-not-found");
+      _productsNotFound.textContent = "Opsss! Nenhum produto encontrado.";
+      $shelf.appendChild(_productsNotFound);
+    }
+
+    hideMenu();
   },
 
   clear: () => {
