@@ -6,13 +6,20 @@ $gray1: #808080;
 $gray2: #666666;
 $primary: #00c0ee;
 
+body {
+  background-color: $white;
+}
+
+.container {
+  margin: 0 27px;
+}
+
 .header {
   margin-top: 16px;
   border-bottom: 2px solid #c7c7c7;
   padding-bottom: 18px;
 
   &__content {
-    margin: 0 27px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -39,6 +46,43 @@ $primary: #00c0ee;
         line-height: 12px;
         bottom: 0;
         right: 0;
+      }
+    }
+  }
+}
+
+.shelf {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__top {
+    width: 100%;
+
+    &__title {
+      font-family: "Open Sans", sans-serif;
+      font-size: 32px;
+      line-height: 44px;
+      color: #333333;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    &__buttons {
+      display: flex;
+      width: 100%;
+
+      .shelf__top__button {
+        width: 50%;
+        border: 1px solid $gray2;
+        background-color: transparent;
+        color: $gray2;
+        font-family: "Open Sans", sans-serif;
+        font-size: 23px;
+        line-height: 33px;
+        padding: 8px 0;
       }
     }
   }
