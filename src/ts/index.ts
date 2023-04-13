@@ -9,6 +9,8 @@ const Shelf = {
       Shelf.getProducts();
       Shelf.showMoreProducts();
     });
+
+    Shelf.openFilter();
   },
 
   getProducts: async () => {
@@ -75,6 +77,19 @@ const Shelf = {
       }
 
       Shelf.setupBuyProduct();
+    });
+  },
+
+  openFilter: () => {
+    const $buttonFilter = document.querySelector(".shelf__top__button.filter");
+    $buttonFilter?.addEventListener("click", () => {
+      const $filter = document.querySelector(".shelf__filter.filter");
+      $filter.classList.toggle("show");
+
+      const $closeFilter = document.querySelector(".shelf__filter-top__close");
+      $closeFilter?.addEventListener("click", () => {
+        $filter.classList.remove("show");
+      });
     });
   },
 };
