@@ -1,5 +1,6 @@
 import { createProducts } from "./createProducts";
 import { Filter } from "./filters";
+import { Cart } from "./cart";
 
 export const serverUrl = "http://localhost:5000";
 export const limit = 4;
@@ -12,11 +13,11 @@ const Default = {
       Default.goToTop();
 
       Filter.setup();
+      Cart.setup();
     });
 
     Default.openMenu("filter", "filter");
     Default.openMenu("order", "order");
-    Default.updateCart();
   },
 
   getProducts: async () => {
@@ -183,22 +184,6 @@ const Default = {
         $goToTop.classList.remove("show");
       }
     });
-  },
-
-  updateCart: () => {
-    const $numberProductsInCart = document.querySelector(
-      ".header__content__cart-text"
-    )!;
-
-    const products = localStorage.getItem("products");
-    if (products) {
-      const productsArray = JSON.parse(products);
-      const numberProducts = productsArray.reduce(
-        (acc: number, product: any) => acc + product.quantity,
-        0
-      );
-      $numberProductsInCart.textContent = String(numberProducts);
-    }
   },
 };
 

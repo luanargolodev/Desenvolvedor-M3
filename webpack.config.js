@@ -18,11 +18,6 @@ module.exports = (paths) => ({
         // include: path.resolve(__dirname, paths.scripts.src),
         use: "ts-loader",
       },
-      {
-        test: /\.scss$/,
-        exclude: /(node_modules|bower_components)/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
     ],
   },
   plugins: [],
