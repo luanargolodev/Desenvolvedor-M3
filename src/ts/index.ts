@@ -1,8 +1,8 @@
 import { createProducts } from "./createProducts";
 import { Filter } from "./filters";
 
-const serverUrl = "http://localhost:5000";
-const limit = 4;
+export const serverUrl = "http://localhost:5000";
+export const limit = 4;
 
 const Shelf = {
   init: function () {
@@ -57,9 +57,45 @@ const Shelf = {
     let currentPage = 1;
 
     $buttonShowMoreProducts.addEventListener("click", async () => {
-      const response = await fetch(
-        `${serverUrl}/products?&_limit=${limit}&_page=${currentPage + 1}`
-      );
+      const search = $buttonShowMoreProducts.getAttribute("data-search");
+      let response: Response;
+
+      interface SearchOption {
+        sort: string;
+        order: string;
+      }
+
+      interface SearchOptions {
+        [key: string]: SearchOption;
+      }
+
+      const searchOptions: SearchOptions = {
+        recent: {
+          sort: "date",
+          order: "desc",
+        },
+        "lowest-price": {
+          sort: "price",
+          order: "desc",
+        },
+        "highest-price": {
+          sort: "price",
+          order: "asc",
+        },
+      };
+
+      const searchOption: SearchOption | undefined = searchOptions[search];
+
+      if (searchOption) {
+        const { sort, order } = searchOption;
+
+        response = await fetch(
+          `${serverUrl}/products?_sort=${sort}&_order=${order}&_limit=${limit}&_page=${
+            currentPage + 1
+          }`
+        );
+      }
+
       const data = await response.json();
 
       if (!response.ok) {

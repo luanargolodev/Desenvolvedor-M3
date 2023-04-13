@@ -1,3 +1,6 @@
+import { serverUrl, limit } from "./index";
+import { createProducts } from "./createProducts";
+
 const filters = {
   colors: [
     "Amarelo",
@@ -20,6 +23,11 @@ const filters = {
     "R$ 501,00",
   ],
 };
+
+function hideMenu() {
+  const $menu = document.querySelector(".shelf__filter.order");
+  $menu.classList.remove("show");
+}
 
 export const Filter = {
   init: function () {},
@@ -66,10 +74,13 @@ export const Filter = {
     Filter.select();
     Filter.apply();
     Filter.clear();
+    Filter.orderBy();
   },
 
   open: () => {
-    const $filter = document.querySelectorAll(".shelf__filter-content__option");
+    const $filter = document.querySelectorAll(
+      ".shelf__filter-content__option:not(.order)"
+    );
 
     $filter.forEach((filter) => {
       filter.addEventListener("click", () => {
@@ -143,6 +154,64 @@ export const Filter = {
         const $input = input.querySelector("input");
         $input.checked = false;
       });
+    });
+  },
+
+  orderBy: () => {
+    const $orderByRecent = document.querySelector(
+      ".shelf__filter-content__option.recent"
+    );
+    $orderByRecent.addEventListener("click", async () => {
+      const response = await fetch(
+        `${serverUrl}/products?_sort=date&_order=desc&_limit=${limit}&_page=1`
+      );
+      const data = await response.json();
+
+      const productsHtml = createProducts(data);
+      const $shelf = document.querySelector(".shelf__products")!;
+      $shelf.innerHTML = productsHtml;
+
+      const $buttonShowMore = document.querySelector(".shelf__show-more");
+      $buttonShowMore.setAttribute("data-search", "recent");
+      hideMenu();
+    });
+
+    const $orderByLowestPrice = document.querySelector(
+      ".shelf__filter-content__option.lowest-price"
+    );
+    $orderByLowestPrice.addEventListener("click", async () => {
+      const response = await fetch(
+        `${serverUrl}/products?_sort=price&_order=desc&_limit=${limit}&_page=1`
+      );
+      const data = await response.json();
+
+      const productsHtml = createProducts(data);
+      const $shelf = document.querySelector(".shelf__products")!;
+      $shelf.innerHTML = productsHtml;
+
+      const $buttonShowMore = document.querySelector(".shelf__show-more");
+      $buttonShowMore.setAttribute("data-search", "lowest-price");
+
+      hideMenu();
+    });
+
+    const $orderByHighestPrice = document.querySelector(
+      ".shelf__filter-content__option.highest-price"
+    );
+    $orderByHighestPrice.addEventListener("click", async () => {
+      const response = await fetch(
+        `${serverUrl}/products?_sort=price&_order=asc&_limit=${limit}&_page=1`
+      );
+      const data = await response.json();
+
+      const productsHtml = createProducts(data);
+      const $shelf = document.querySelector(".shelf__products")!;
+      $shelf.innerHTML = productsHtml;
+
+      const $buttonShowMore = document.querySelector(".shelf__show-more");
+      $buttonShowMore.setAttribute("data-search", "highest-price");
+
+      hideMenu();
     });
   },
 };
