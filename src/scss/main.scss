@@ -33,6 +33,7 @@ body {
       border: none;
       background-color: transparent;
       position: relative;
+      cursor: pointer;
 
       &-text {
         position: absolute;
@@ -83,7 +84,74 @@ body {
         font-size: 23px;
         line-height: 33px;
         padding: 8px 0;
+        cursor: pointer;
       }
     }
+  }
+
+  &__products {
+    display: flex;
+    gap: 25px;
+    margin-top: 35px;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .shelf__product {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-family: "Open Sans", sans-serif;
+      max-width: 162px;
+      cursor: pointer;
+
+      &-name {
+        font-size: 14px;
+        line-height: 19px;
+        text-transform: uppercase;
+        color: $black;
+        margin-top: 8px;
+      }
+
+      &-price {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 22px;
+        color: $black;
+        margin-top: 8px;
+      }
+
+      &-installments {
+        font-size: 16px;
+        line-height: 22px;
+        color: $gray2;
+      }
+
+      &-buybutton {
+        background-color: $black;
+        border: none;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 19px;
+        margin-top: 19px;
+        padding: 7px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__show-more {
+    margin-top: 39px;
+    background-color: $primary;
+    width: 175px;
+    height: 35px;
+    border: none;
+    color: $white;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 19px;
+    text-transform: uppercase;
+    cursor: pointer;
   }
 }
