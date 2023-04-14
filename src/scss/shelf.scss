@@ -242,8 +242,11 @@
     line-height: 19px;
     text-transform: uppercase;
     cursor: pointer;
-    margin-left: 240px;
     transition: all 0.3s ease;
+
+    @media screen and (min-width: 1024px) {
+      margin-left: 240px;
+    }
 
     &.empty {
       background-color: transparent;
