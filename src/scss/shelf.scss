@@ -147,6 +147,7 @@
     flex-wrap: wrap;
     justify-content: center;
     font-family: "Open Sans", sans-serif;
+    justify-content: flex-start;
 
     @media screen and (min-width: 1024px) {
       gap: 65px;
@@ -164,6 +165,10 @@
       text-transform: uppercase;
       color: $gray2;
       text-align: center;
+
+      @media screen and (min-width: 1024px) {
+        align-items: baseline;
+      }
     }
 
     .shelf__product {
