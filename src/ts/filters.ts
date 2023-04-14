@@ -24,47 +24,62 @@ const filters = {
     "R$ 301,00 - R$ 500,00",
     "R$ 501,00",
   ],
+  textPrices: [
+    "de R$0 até R$50",
+    "de R$51 até R$150",
+    "de R$151 até R$300",
+    "de R$301 até R$500",
+    "a partir de R$500",
+  ],
 };
 
 export const Filter = {
   init: function () {},
 
   setup: () => {
-    const $filterColors = document.querySelector(
+    const $filterColors = document.querySelectorAll(
       ".shelf__filter-content__options.colors"
     );
-    const $filterSizes = document.querySelector(
+    const $filterSizes = document.querySelectorAll(
       ".shelf__filter-content__options.sizes"
     );
-    const $filtersPrices = document.querySelector(
+    const $filtersPrices = document.querySelectorAll(
       ".shelf__filter-content__options.prices"
     );
 
     filters.colors.forEach((color) => {
-      $filterColors.innerHTML += `
+      $filterColors.forEach((filter) => {
+        filter.innerHTML += `
           <li class="shelf__filter-content__options__input">
             <input type="checkbox" id="${color}" name="${color}" value="${color}" />
             <label for="${color}">${color}</label>
           </li>
         `;
+      });
     });
 
     filters.sizes.forEach((size) => {
-      $filterSizes.innerHTML += `
+      $filterSizes.forEach((filter) => {
+        filter.innerHTML += `
           <li class="shelf__filter-content__options__input" data-selected="false">
             <input type="checkbox" id="${size}" name="${size}" value="${size}" />
             <label for="${size}">${size}</label>
           </li>
         `;
+      });
     });
 
     filters.prices.forEach((price) => {
-      $filtersPrices.innerHTML += `
+      $filtersPrices.forEach((filter) => {
+        filter.innerHTML += `
           <li class="shelf__filter-content__options__input">
             <input type="checkbox" id="${price}" name="${price}" value="${price}" />
-            <label for="${price}">${price}</label>
+            <label for="${price}">${
+          filters.textPrices[filters.prices.indexOf(price)]
+        }</label>
           </li>
         `;
+      });
     });
 
     Filter.open();
@@ -103,6 +118,15 @@ export const Filter = {
       filter.addEventListener("click", (e) => {
         e.preventDefault();
 
+        console.log(filter);
+
+        if (window.innerWidth > 1024) {
+          const checkbox = filter.querySelector<HTMLInputElement>(
+            'input[type="checkbox"'
+          );
+          checkbox.checked = true;
+        }
+
         const isSelected = filter.getAttribute("data-selected") === "true";
 
         filter.setAttribute("data-selected", isSelected ? "false" : "true");
@@ -113,32 +137,34 @@ export const Filter = {
   apply: () => {
     // get all checkbox and shelf__filter-content__options__input
     let selectedFilters: string[] = [];
-    const $buttonApply = document.querySelector(
+    const $buttonApply = document.querySelectorAll(
       ".shelf__filter-content-menu-button.apply"
     );
-    $buttonApply.addEventListener("click", () => {
-      const $inputs = document.querySelectorAll(
-        ".shelf__filter-content__options__input"
-      );
+    $buttonApply.forEach((buttonApply) => {
+      buttonApply.addEventListener("click", () => {
+        const $inputs = document.querySelectorAll(
+          ".shelf__filter-content__options__input"
+        );
 
-      $inputs.forEach((input) => {
-        const $input = input.querySelector("input");
-        if ($input.checked) {
-          selectedFilters.push($input.value);
-        }
+        $inputs.forEach((input) => {
+          const $input = input.querySelector("input");
+          if ($input.checked) {
+            selectedFilters.push($input.value);
+          }
 
-        if (input.getAttribute("data-selected") === "true") {
-          selectedFilters.push($input.value);
-        }
+          if (input.getAttribute("data-selected") === "true") {
+            selectedFilters.push($input.value);
+          }
 
-        input.setAttribute("data-selected", "false");
-        $input.checked = false;
+          input.setAttribute("data-selected", "false");
+          $input.checked = false;
+        });
+
+        if (selectedFilters.length === 0) return;
+
+        Filter.search(selectedFilters);
+        selectedFilters = [];
       });
-
-      if (selectedFilters.length === 0) return;
-
-      Filter.search(selectedFilters);
-      selectedFilters = [];
     });
   },
 

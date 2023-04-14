@@ -3,7 +3,7 @@ import { Filter } from "./filters";
 import { Cart } from "./cart";
 
 export const serverUrl = "http://localhost:5000";
-export const limit = 4;
+export const limit = window.innerWidth > 1024 ? 9 : 4;
 
 const Default = {
   init: function () {
