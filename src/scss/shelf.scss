@@ -181,6 +181,11 @@
 
       @media screen and (min-width: 1024px) {
         max-height: 424px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
       }
 
       &-name {
@@ -216,6 +221,11 @@
         margin-top: 19px;
         padding: 7px;
         cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: $primary;
+        }
       }
     }
   }
@@ -232,12 +242,19 @@
     line-height: 19px;
     text-transform: uppercase;
     cursor: pointer;
+    margin-left: 240px;
+    transition: all 0.3s ease;
 
     &.empty {
       background-color: transparent;
       color: $black;
       width: 100%;
       text-transform: inherit;
+    }
+
+    &:hover {
+      background-color: $black;
+      color: $white;
     }
   }
 }
