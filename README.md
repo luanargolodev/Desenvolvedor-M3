@@ -84,6 +84,8 @@ Linkedin: https://www.linkedin.com/in/luanargolo/
 
 Discord: Luan Lemos#5187
 
+E-mail: ipsluan@icloud.com
+
 ## Sobre mim
 
 Me chamo Luan, sou formado em Análise e Desenvolvimento de Sistemas e Desenvolvedor front-end com experiência em VTEX e ReactJS.
