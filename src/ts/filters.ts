@@ -87,9 +87,13 @@ export const Filter = {
     });
 
     // desktop
-    filters.colors.forEach((color) => {
+    filters.colors.forEach((color, index) => {
+      console.log(color, index);
+
       $filterColorsDesktop.innerHTML += `
-          <li class="shelf__filter-content__options__input">
+          <li class="shelf__filter-content__options__input ${
+            index >= 5 ? "hide" : ""
+          }">
             <input type="checkbox" id="${
               color + "-desktop"
             }" name="${color}" value="${color}" />
@@ -120,6 +124,21 @@ export const Filter = {
       }</label>
           </li>
         `;
+    });
+
+    const $showMoreFilters = document.createElement("button");
+    $showMoreFilters.classList.add("shelf__filter-content__options__show-more");
+    $showMoreFilters.innerHTML = "Ver todas as cores";
+    $filterColorsDesktop.appendChild($showMoreFilters);
+
+    $showMoreFilters.addEventListener("click", () => {
+      const $filters = document.querySelectorAll(
+        ".shelf__filter-content__options.colors.desktop .shelf__filter-content__options__input.hide"
+      );
+
+      $filters.forEach((filter) => {
+        filter.classList.toggle("hide");
+      });
     });
 
     Filter.open();

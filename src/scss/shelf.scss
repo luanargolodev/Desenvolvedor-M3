@@ -374,8 +374,35 @@
 
   &.colors,
   &.prices {
+    .shelf__filter-content__options__show-more {
+      font-family: "Open Sans", sans-serif;
+      font-size: 12px;
+      line-height: 12px;
+      text-decoration: underline;
+      color: $gray2;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+
+      &::after {
+        content: "";
+        display: inline-block;
+        background-image: url("../img/icons/arrow.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 7px;
+        height: 5px;
+        margin-left: 2px;
+      }
+    }
+
     .shelf__filter-content__options__input {
       margin-bottom: 18px;
+
+      &.hide {
+        display: none;
+      }
 
       input[type="checkbox"] {
         display: inline-block;
