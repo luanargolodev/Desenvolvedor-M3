@@ -39,7 +39,20 @@
       <section class="shelf container">
         <div class="shelf__top">
           <h2 class="shelf__top__title">Blusas</h2>
-          <div class="shelf__top__buttons">
+          <div class="shelf__top__order desktop">
+            <span class="shelf__top__order__title">Ordenar por:</span>
+            <ul class="shelf__top__order__box">
+              <li class="shelf__top__order__box__item recent">Mais recentes</li>
+              <li class="shelf__top__order__box__item lowest-price">
+                Menor preço
+              </li>
+              <li class="shelf__top__order__box__item highest-price">
+                Maior preço
+              </li>
+            </ul>
+          </div>
+
+          <div class="shelf__top__buttons mobile">
             <button class="shelf__top__button filter">Filtrar</button>
             <button class="shelf__top__button order">Ordenar</button>
           </div>
@@ -87,10 +100,10 @@
               <h2 class="shelf__filter-content__option order recent">
                 Mais recente
               </h2>
-              <h2 class="shelf__filter-content__option order lowest-price">
+              <h2 class="shelf__filter-content__option order highest-price">
                 Maior preço
               </h2>
-              <h2 class="shelf__filter-content__option order highest-price">
+              <h2 class="shelf__filter-content__option order lowest-price">
                 Menor preço
               </h2>
             </div>

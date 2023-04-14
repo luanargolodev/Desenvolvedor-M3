@@ -10,6 +10,12 @@
   &__top {
     width: 100%;
 
+    @media screen and (min-width: 1024px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     &__title {
       font-family: "Open Sans", sans-serif;
       font-size: 32px;
@@ -17,6 +23,11 @@
       color: #333333;
       margin-bottom: 12px;
       text-align: center;
+
+      @media screen and (min-width: 1024px) {
+        text-align: left;
+        margin-top: 40px;
+      }
     }
 
     &__buttons {
@@ -330,5 +341,78 @@
       width: 100%;
       text-transform: inherit;
     }
+  }
+}
+
+.shelf__top__order {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+
+  &__title {
+    font-size: 16px;
+    line-height: 22px;
+    color: $black;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 142px;
+    height: 42px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      display: inline-block;
+      background-image: url("../img/icons/arrow.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 12px;
+      height: 9px;
+      margin-left: 10px;
+    }
+  }
+
+  &__box {
+    display: none;
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 142px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    width: 100%;
+
+    &.show {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__item {
+      font-size: 16px;
+      line-height: 22px;
+      color: $black;
+      padding: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary;
+        color: $white;
+      }
+    }
+  }
+}
+
+.desktop {
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.mobile {
+  @media screen and (min-width: 1024px) {
+    display: none;
   }
 }

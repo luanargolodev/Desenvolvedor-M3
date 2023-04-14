@@ -10,6 +10,13 @@ body {
 
 .container {
   margin: 0 27px;
+
+  @media screen and (min-width: 1024px) {
+    max-width: 1500px;
+    display: flex;
+    margin: 0 auto;
+    padding: 0 27px;
+  }
 }
 
 .go-top {

@@ -85,6 +85,12 @@ export const Filter = {
         $options.classList.toggle("show");
       });
     });
+
+    const $filterDesktop = document.querySelector(".shelf__top__order__title");
+    $filterDesktop.addEventListener("click", () => {
+      const $options = $filterDesktop.nextElementSibling;
+      $options.classList.toggle("show");
+    });
   },
 
   select: () => {
@@ -152,8 +158,6 @@ export const Filter = {
 
     const pricesFiltered = separateNumbers(prices);
 
-    console.log("pricesFiltered", pricesFiltered);
-
     let baseUrlRequest = `${serverUrl}/products?_limit=${limit}&_page=1`;
     if (colors.length > 0) {
       baseUrlRequest += `&color_like=${colors}`;
@@ -216,6 +220,7 @@ export const Filter = {
 
   orderBy: () => {
     const orders = [
+      // mobile
       {
         classSelector: ".shelf__filter-content__option.recent",
         searchParams: { sort: "date", order: "desc" },
@@ -223,13 +228,32 @@ export const Filter = {
       },
       {
         classSelector: ".shelf__filter-content__option.lowest-price",
-        searchParams: { sort: "price", order: "desc" },
+        searchParams: { sort: "price", order: "asc" },
         buttonSearch: "lowest-price",
       },
       {
         classSelector: ".shelf__filter-content__option.highest-price",
-        searchParams: { sort: "price", order: "asc" },
+        searchParams: { sort: "price", order: "desc" },
         buttonSearch: "highest-price",
+      },
+      // desktop
+      {
+        classSelector: ".shelf__top__order__box__item.recent",
+        searchParams: { sort: "date", order: "desc" },
+        buttonSearch: "recent",
+        text: "Mais recentes",
+      },
+      {
+        classSelector: ".shelf__top__order__box__item.lowest-price",
+        searchParams: { sort: "price", order: "asc" },
+        buttonSearch: "lowest-price",
+        text: "Menor preço",
+      },
+      {
+        classSelector: ".shelf__top__order__box__item.highest-price",
+        searchParams: { sort: "price", order: "desc" },
+        buttonSearch: "highest-price",
+        text: "Maior preço",
       },
     ];
 
@@ -252,6 +276,11 @@ export const Filter = {
         $buttonShowMore.textContent = "Carregar mais";
         $buttonShowMore.disabled = false;
         $buttonShowMore.classList.remove("empty");
+
+        if (order.text) {
+          const $text = document.querySelector(".shelf__top__order__title");
+          $text.textContent = order.text;
+        }
 
         hideMenu();
       });

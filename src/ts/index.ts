@@ -64,11 +64,11 @@ const Default = {
         },
         "lowest-price": {
           sort: "price",
-          order: "desc",
+          order: "asc",
         },
         "highest-price": {
           sort: "price",
-          order: "asc",
+          order: "desc",
         },
         id: {
           sort: "id",
