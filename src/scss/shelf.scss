@@ -344,6 +344,16 @@
     line-height: 22px;
   }
 
+  &.recent,
+  &.highest-price,
+  &.lowest-price {
+    font-size: 22px;
+    line-height: 33px;
+    color: $black;
+    text-transform: unset;
+    letter-spacing: normal;
+  }
+
   &.colors,
   &.sizes,
   &.prices {
