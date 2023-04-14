@@ -1,79 +1,98 @@
-# Venha ser um desenvolvedor da Digital M3
+# Desafio M3, a Cadastra Company
 
-Ola, somos a Agência Digital M3, uma agência voltada para ramo de comercio eletrônico, trabalhamos com implantação, migração, evolução e otimização de e-commerces. Estamos com a sede de desenvolvimento em Nova Friburgo RJ. Mas contratamos pessoas de todo o pais, visto que trabalhamos 100% home office.  
-> R. Helena Coutinho, 41 
-> Braunes, Nova Friburgo/RJ
-[https://goo.gl/maps/2mWagcctnrGdtFhBA]( https://goo.gl/maps/2mWagcctnrGdtFhBA )
+Layout no figma: https://www.figma.com/file/hPfcV6VClVfkHCtje9997Q/Desafio-m3?node-id=0%3A1
 
-Estamos procurando Desenvolvedores(as) `Front-end`, com sólidos conhecimentos em HTML, CSS e TS para projetar interfaces e entregar a melhor experiência para os consumidores visando sempre a otimização do código e agilidade no desenvolvimento.
+## ✔️ Tecnologias utilizadas
 
-## O que procuramos
+- `HTML`
+- `CSS/SASS`
+- `TypeScript`
+- `Gulp`
+- `Webpack`
 
-### Requisitos Obrigatórios
+## Sobre o desafio
 
-- Html5, css3;
-- Javascript/Typescript;
-- Consumo de APIs.
-- Versionamento Git;
-- Grunt/gulp;
-- Sass/less;
-- Nodejs
-- Sites responsivos;
-- Iniciativa, criatividade e colaboração;
-- Boas práticas: reutilização de código, semântica, organização, performance.
+O desafio consiste em avaliar meus conhecimentos e fundamentos de front end, por isso foi solicitado desenvolver sem nenhum framework.
 
-### Desejáveis:
+## Funcionalidades
 
-- Experiência com algum CMS
-- Conhecimento/Experiência em Vtex
-- Nodejs
+- [x] Requisição a API para obter os produtos;
+- [x] Filtrar produtos por cor, tamanho e preço;
+- [x] Adicionar e remover produtos ao carrinho;
+- [x] Carregar mais produtos;
+- [x] Responsividade;
+- [x] Organização;
+- [x] Performance;
+- [x] Reutilização de código;
+- [x] PLUS: TypeScript com clean code;
+- [x] PLUS: Minificador de imagens.
 
-----
+## 📁 Rodando o projeto
 
-## Como se candidatar a vaga
+Clone o projeto (Obs.: Node v14.21.3)
 
-- [Crie um fork desse projeto;](https://github.com/agenciam3/Desenvolvedor-M3/fork)
-- No seu fork, codifique o layout seguindo as instruções abaixo;
-- Atualize o readme com as instruções necessárias para rodar o seu código;
-- Adicione também seu e-mail de contato ao readme do projeto ( caso seu e-mail do github esteja privado )
-- envie para [heraldo@digitalm3.com.br](mailto:heraldo@digitalm3.com.br?subject=Vaga%20DEV%20-%20Digital%20M3)
+```bash
+  git clone https://github.com/luanargolodev/Desenvolvedor-M3.git
+```
 
+Entre no diretório do projeto
 
-**obs.**: link do projeto [github.com/agenciam3/Desenvolvedor-M3](https://github.com/agenciam3/Desenvolvedor-M3)
+```bash
+  cd Desenvolvedor-M3
+```
 
-### Instruções para o teste
+Instale as dependências necessárias
 
-O layout se encontra no [figma](https://www.figma.com/file/hPfcV6VClVfkHCtje9997Q/Desafio-m3?node-id=0%3A1) e pode ser encontrado images dele em "layout".
+```bash
+  npm i
+```
 
-### Dependências
+Finalmente, podemos iniciar o servidor
 
-O projeto possui um setup pronto no qual há a necessidade de possuir o nodejs instalado na versão 14 ou superior.
+```bash
+  npm start
+```
 
-Para instalar as dependências só é preciso executar o comando: `npm install`
+Caso queira visualizar as rotas da API
 
-O dar start no server e nos processos para desenvolvimento é necessário rodar o comando: `npm start `
+```bash
+  http://localhost:5000/products
+```
 
-Uma ver que o comando é dado ele irá levantar 2 servidores, sendo eles:
- - um para acessar o front-end que roda na porta 3000. No qual pode ser acessado pela url: http://localhost:3000
- - um para o json-server que irá export uma api com a lista de produtos que roda na porta 5000. Para acessar os produtos é na url:  http://localhost:5000/products
+Para ver o projeto rodando
 
-### Objetivo
+```bash
+  http://localhost:3000
+```
 
-O objetivo desse desafio é avaliar a seus conhecimentos fundamentais de front end, por isso pedimos que não utilize nenhum framework, porem caso deseje utilizar frameworks como react, é possível adicionar ao setup.
-### Obrigatório
+## Autor
 
-- HTML5 e CSS3
-- Typescript
-- Requisição a API para obter os produtos
-- Funcionalidade: Filtrar produtos por cor, tamanho e preço.
-- Funcionalidade: Adicionar produto ao carrinho.
-- Funcionalidade: Carregar mais produtos.
-- Não utilizar Bootstrap, Foundation Css, Semantic ui ou semelhantes ;
-- Responsividade
+| [<img src="https://avatars.githubusercontent.com/u/10791688?v=4" width=115><br><sub>Luan Argolo Lemos</sub>](https://github.com/luanargolodev)
+| :---:
 
-#### Bônus
+## Contatos
 
-- Typescript com clean code
-- Adição de processo no gulp para otimizar imagens
+WhatsApp: https://wa.me/5573991933732
 
-##### Dúvidas: [heraldo@digitalm3.com.br](mailto:heraldo@digitalm3.com.br?subject=Dúvida%20Vaga%20DEV%20-%20Digital%20M3)
+Linkedin: https://www.linkedin.com/in/luanargolo/
+
+## Sobre mim
+
+Me chamo Luan, sou formado em Análise e Desenvolvimento de Sistemas e Desenvolvedor front-end com experiência em VTEX e ReactJS.
+Estou buscando uma oportunidade na empresa M3.
+
+Tenho conhecimento e experiência em VTEX, HTML, CSS/SASS, JavaScript/TypeScript e ReactJS.
+Em minha carreira como desenvolvedor front-end, já desenvolvi várias landings pages, pop-up, já resolvi também inúmeros bugs em lojas VTEX, além de mexer também com checkout e desenvolver recentemente um quick-view.
+
+Alguns de meus projetos estão em meus cases de sucesso: https://www.dropbox.com/scl/fo/62itos4ext9s2kt9ezpqm/h?dl=0&rlkey=qngl6so7s5uvc12xi53ay69zp
+
+No momento, estou em busca de novas oportunidades e com meu conhecimento posso agregar valor à empresa. Podemos bater um papo? Posso te explicar um pouco mais de minhas experiências.
+Será uma honra fazer parte da empresa.
+
+Agradeço pelo seu tempo, abraço!
+
+## Considerações
+
+Foi um desafio e tanto! Aprendi bastante durante o desenvolvimento dele.
+Tentei aplicar para a vaga de Desenvolvedor front-end VTEX que estava disponível no site de vocês, mas sem sucesso.
+Então, como uma forma de demonstrar minha iniciativa, optei por iniciar o desafio.
