@@ -344,19 +344,23 @@
     line-height: 22px;
   }
 
-  &::after {
-    content: "";
-    display: block;
-    background-image: url("../img/icons/arrow.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    width: 18px;
-    height: 13px;
-    right: 0;
+  &.colors,
+  &.sizes,
+  &.prices {
+    &::after {
+      content: "";
+      display: block;
+      background-image: url("../img/icons/arrow.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      width: 18px;
+      height: 13px;
+      right: 0;
 
-    @media screen and (min-width: 1024px) {
-      content: none;
+      @media screen and (min-width: 1024px) {
+        content: none;
+      }
     }
   }
 }

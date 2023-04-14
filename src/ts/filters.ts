@@ -2,6 +2,7 @@ import { serverUrl, limit } from "./index";
 import { createProducts } from "./createProducts";
 import { separateNumbers } from "./utils/separateNumbers";
 import { hideMenu } from "./utils/hideMenu";
+import { Cart } from "./cart";
 
 const filters = {
   colors: [
@@ -280,6 +281,7 @@ export const Filter = {
     }
 
     hideMenu();
+    Cart.add();
   },
 
   clear: () => {
@@ -365,6 +367,7 @@ export const Filter = {
         }
 
         hideMenu();
+        Cart.add();
       });
     });
   },
