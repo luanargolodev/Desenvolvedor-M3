@@ -7,7 +7,8 @@
     "start": "node_modules/.bin/cross-env SERVER_API=http://localhost:5555 npm-run-all --parallel dev server",
     "start:gp": "npm-run-all --parallel dev server",
     "dev": "gulp",
-    "server": "json-server ./db.json --port 5555"
+    "server": "json-server ./db.json --port 5555",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "npm-run-all": "^4.1.5",
