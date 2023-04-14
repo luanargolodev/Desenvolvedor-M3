@@ -76,6 +76,8 @@ WhatsApp: https://wa.me/5573991933732
 
 Linkedin: https://www.linkedin.com/in/luanargolo/
 
+Discord: Luan Lemos#5187
+
 ## Sobre mim
 
 Me chamo Luan, sou formado em Análise e Desenvolvimento de Sistemas e Desenvolvedor front-end com experiência em VTEX e ReactJS.
