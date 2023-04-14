@@ -242,7 +242,7 @@
     line-height: 19px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 
     @media screen and (min-width: 1024px) {
       margin-left: 240px;
@@ -253,6 +253,11 @@
       color: $black;
       width: 100%;
       text-transform: inherit;
+
+      &:hover {
+        background-color: transparent;
+        color: $black;
+      }
     }
 
     &:hover {
