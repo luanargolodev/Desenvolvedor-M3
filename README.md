@@ -27,6 +27,12 @@ O desafio consiste em avaliar meus conhecimentos e fundamentos de front end, por
 - [x] PLUS: TypeScript com clean code;
 - [x] PLUS: Minificador de imagens.
 
+![Desenvolvedor M3 - Luan Lemos-min](https://user-images.githubusercontent.com/10791688/231948657-d27457ec-1514-46f9-b6a0-a19779de5f44.gif)
+
+
+![Desenvolvedor M3 - Luan Lemos (1)-min](https://user-images.githubusercontent.com/10791688/231948498-635ffe2c-8812-41d2-ba96-5c94f1cf623e.gif)
+
+
 ## 📁 Rodando o projeto
 
 Clone o projeto (Obs.: Node v14.21.3)
