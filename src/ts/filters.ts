@@ -37,49 +37,89 @@ export const Filter = {
   init: function () {},
 
   setup: () => {
-    const $filterColors = document.querySelectorAll(
+    const $filterColors = document.querySelector(
       ".shelf__filter-content__options.colors"
     );
-    const $filterSizes = document.querySelectorAll(
+    const $filterSizes = document.querySelector(
       ".shelf__filter-content__options.sizes"
     );
-    const $filtersPrices = document.querySelectorAll(
+    const $filtersPrices = document.querySelector(
       ".shelf__filter-content__options.prices"
     );
 
+    const $filterColorsDesktop = document.querySelector(
+      ".shelf__filter-content__options.colors.desktop"
+    );
+    const $filterSizesDesktop = document.querySelector(
+      ".shelf__filter-content__options.sizes.desktop"
+    );
+    const $filtersPricesDesktop = document.querySelector(
+      ".shelf__filter-content__options.prices.desktop"
+    );
+
     filters.colors.forEach((color) => {
-      $filterColors.forEach((filter) => {
-        filter.innerHTML += `
+      $filterColors.innerHTML += `
           <li class="shelf__filter-content__options__input">
             <input type="checkbox" id="${color}" name="${color}" value="${color}" />
             <label for="${color}">${color}</label>
           </li>
         `;
-      });
     });
 
     filters.sizes.forEach((size) => {
-      $filterSizes.forEach((filter) => {
-        filter.innerHTML += `
+      $filterSizes.innerHTML += `
           <li class="shelf__filter-content__options__input" data-selected="false">
             <input type="checkbox" id="${size}" name="${size}" value="${size}" />
             <label for="${size}">${size}</label>
           </li>
         `;
-      });
     });
 
     filters.prices.forEach((price) => {
-      $filtersPrices.forEach((filter) => {
-        filter.innerHTML += `
+      $filtersPrices.innerHTML += `
           <li class="shelf__filter-content__options__input">
             <input type="checkbox" id="${price}" name="${price}" value="${price}" />
             <label for="${price}">${
-          filters.textPrices[filters.prices.indexOf(price)]
-        }</label>
+        filters.textPrices[filters.prices.indexOf(price)]
+      }</label>
           </li>
         `;
-      });
+    });
+
+    // desktop
+    filters.colors.forEach((color) => {
+      $filterColorsDesktop.innerHTML += `
+          <li class="shelf__filter-content__options__input">
+            <input type="checkbox" id="${
+              color + "-desktop"
+            }" name="${color}" value="${color}" />
+            <label for="${color + "-desktop"}">${color}</label>
+          </li>
+        `;
+    });
+
+    filters.sizes.forEach((size) => {
+      $filterSizesDesktop.innerHTML += `
+          <li class="shelf__filter-content__options__input" data-selected="false">
+            <input type="checkbox" id="${
+              size + "-desktop"
+            }" name="${size}" value="${size}" />
+            <label for="${size + "-desktop"}">${size}</label>
+          </li>
+        `;
+    });
+
+    filters.prices.forEach((price) => {
+      $filtersPricesDesktop.innerHTML += `
+          <li class="shelf__filter-content__options__input">
+            <input type="checkbox" id="${
+              price + "-desktop"
+            }" name="${price}" value="${price}" />
+            <label for="${price + "-desktop"}">${
+        filters.textPrices[filters.prices.indexOf(price)]
+      }</label>
+          </li>
+        `;
     });
 
     Filter.open();
@@ -118,8 +158,6 @@ export const Filter = {
       filter.addEventListener("click", (e) => {
         e.preventDefault();
 
-        console.log(filter);
-
         if (window.innerWidth > 1024) {
           const checkbox = filter.querySelector<HTMLInputElement>(
             'input[type="checkbox"'
@@ -135,7 +173,6 @@ export const Filter = {
   },
 
   apply: () => {
-    // get all checkbox and shelf__filter-content__options__input
     let selectedFilters: string[] = [];
     const $buttonApply = document.querySelectorAll(
       ".shelf__filter-content-menu-button.apply"
@@ -150,9 +187,7 @@ export const Filter = {
           const $input = input.querySelector("input");
           if ($input.checked) {
             selectedFilters.push($input.value);
-          }
-
-          if (input.getAttribute("data-selected") === "true") {
+          } else if (input.getAttribute("data-selected") === "true") {
             selectedFilters.push($input.value);
           }
 
@@ -229,17 +264,19 @@ export const Filter = {
   },
 
   clear: () => {
-    const $buttonClear = document.querySelector(
+    const $buttonClear = document.querySelectorAll(
       ".shelf__filter-content-menu-button.clean"
     );
-    $buttonClear.addEventListener("click", () => {
-      const $inputs = document.querySelectorAll(
-        ".shelf__filter-content__options__input"
-      );
-      $inputs.forEach((input) => {
-        input.setAttribute("data-selected", "false");
-        const $input = input.querySelector("input");
-        $input.checked = false;
+    $buttonClear.forEach((buttonClear) => {
+      buttonClear.addEventListener("click", () => {
+        const $inputs = document.querySelectorAll(
+          ".shelf__filter-content__options__input"
+        );
+        $inputs.forEach((input) => {
+          input.setAttribute("data-selected", "false");
+          const $input = input.querySelector("input");
+          $input.checked = false;
+        });
       });
     });
   },
